@@ -1,0 +1,38 @@
+http:
+    client:
+        ssl:
+            trust-store: truststore.jks
+            trust-store-password: changeit
+javax:
+    net:
+        debug: all
+jira:
+    host: ec2-3-84-19-247.compute-1.amazonaws.com
+    issecure: true
+    port: 8080
+    project: Project Evaluation
+    user: admin
+    password: admin
+    loadData: true
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: prometheus,update-project
+server:
+    port: 9092
+spring:
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: admin$1234
+        url: jdbc:mysql://database-1.cyhjegvpk9xj.us-east-1.rds.amazonaws.com:3306/kpi_database
+        username: admin
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        hibernate:
+            ddl-auto: update
+
+jasypt:
+    encryptor:
+        password: p1a2s3s4w5o6r7d8

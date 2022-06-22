@@ -1,0 +1,58 @@
+MetricQuery: 
+---------------------------------------
+1: Mean Time To Deploy - Done
+Jira Query - 
+
+project=ESDN AND
+issuetype in (standardIssueTypes(), subTaskIssueTypes()) AND
+status in (Done, Resolved, Closed) AND
+fixVersion in releasedVersions()
+* There are many issues, where creation date is after their fix version's release date. 
+* Prune such issues 
+The calculated Mean Time to Deploy from this dataset is X days per ticket for Y number valid tickets.
+-----------------------------------------
+2. Effort per Release - Pending
+Jira Query - 
+
+project = ESDN AND
+fixVersion = <version>
+
+avg(avg(aggregateeffort of ticket for a release)) 
+
+
+------------------------------------------
+3. Customer Ticket Volume - Done
+
+JIRA Query - 
+
+project = ESDN AND
+created >= -30d
+
+total number of issues found / 30 = X number of tickets per day in last 30 days 
+-------------------------------------------
+4. Change Volume - Done
+
+JIRA Query - 
+
+project = ESDN AND
+fixVersion = <version>
+
+find tickets per release for all releases and take an average 
+Unit: number of issues per release
+--------------------------------------------
+5. Deployment Size - Done 
+
+JIRA Query - 
+
+project = ESDN AND
+fixVersion = <version>
+
+find tickets per release for all releases and take an average 
+
+
+Unit: number of issues per release
+
+Notes: Given LLA currently doesn’t track ad-hoc modifications made in production, and this value only covers
+new and updates features tracked in Jira and logged against releases, this is the same value as Change Volume.
+--------------------------------------------
+
